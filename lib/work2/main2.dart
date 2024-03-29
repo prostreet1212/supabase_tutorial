@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:supabase_tutorial/work2/pages/account_page.dart';
+import 'package:supabase_tutorial/work2/pages/login_page.dart';
+import 'package:supabase_tutorial/work2/pages/splash_page.dart';
 
 Future<void> main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,8 +21,27 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      //home: HomePage(),
+    return  MaterialApp(
+      theme: ThemeData.dark().copyWith(
+        primaryColor: Colors.green,
+        textButtonTheme: TextButtonThemeData(
+          style: TextButton.styleFrom(
+            foregroundColor: Colors.green,
+          ),
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            foregroundColor: Colors.white,
+            backgroundColor: Colors.green,
+          ),
+        ),
+      ),
+     initialRoute: '/',
+      routes: <String, WidgetBuilder>{
+        '/': (context) =>  const SplashPage(),
+        '/login': (context) => const LoginPage(),
+        '/account': (context) => const AccountPage(),
+      },
     );
   }
 }

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "346811731734",
+    "project_id": "supabase-tutorial-83d77",
+    "storage_bucket": "supabase-tutorial-83d77.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:346811731734:android:42e2936282d55d28d14a37",
+        "android_client_info": {
+          "package_name": "com.example.supabase_tutorial"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBA25e9k0y-W9tvrKMYi9DNDnXt6_L_2Iw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

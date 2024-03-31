@@ -34,9 +34,11 @@ class _AccountPageState extends State<AccountPage> {
     final userId = supabase.auth.currentUser!.id;
     final data =
     await supabase.from('profiles').select().eq('id', userId).single();
+
     setState(() {
       _usernameController.text = (data['username'] ?? '') as String;
       _websiteController.text = (data['website'] ?? '') as String;
+      _imageUrl = data['avatar_url'];
     });
   }
 
@@ -50,10 +52,12 @@ class _AccountPageState extends State<AccountPage> {
         padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 12),
         children: [
           Avatar(imageUrl:_imageUrl,
-              onUpload: (imageUrl){
+              onUpload: (imageUrl)async{
             setState(() {
               _imageUrl=imageUrl;
             });
+            final userId = supabase.auth.currentUser!.id;
+            await supabase.from('profiles').update({'avatar_url':imageUrl}).eq('id', userId);
               }),
           SizedBox(height: 12,),
           TextFormField(

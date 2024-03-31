@@ -41,15 +41,23 @@ class Avatar extends StatelessWidget {
               if (image == null) {
                 return;
               }
+              final imageExtension=image.path.split('.').last;
               final imagBytes = await image.readAsBytes();
               final userId = supabase.auth.currentUser!.id;
               final imagePath = '/$userId/profile';
               await supabase.storage
                   .from('profiles')
                   .uploadBinary(imagePath, imagBytes,
-              fileOptions: FileOptions());
-              final imageUrl =
+              fileOptions: FileOptions(
+                upsert: true,contentType: 'image/$imageExtension'
+              ));
+
+              String imageUrl =
                   supabase.storage.from('profiles').getPublicUrl(imagePath);
+              imageUrl=Uri.parse(imageUrl).replace(queryParameters: {
+                't':DateTime.now().millisecondsSinceEpoch.toString()
+              }).toString();
+
               onUpload(imageUrl);
             },
             child: Text('Upload'))
